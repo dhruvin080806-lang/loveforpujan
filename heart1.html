@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>I love you Krisha — Heart Animation</title>
+<style>
+  :root{
+    --bg:#0b0b12;
+    --heart-red: #ff2d55;
+    --heart-dark:#c2183b;
+    --glow: rgba(255,45,85,0.25);
+  }
+
+  *{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+  }
+
+  html,body{
+    height:100%;
+    width:100%;
+    margin:0;
+    font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: radial-gradient(circle at 10% 10%, #111218 0%, var(--bg) 45%);
+    overflow:hidden;
+    color:white;
+  }
+
+  .stage{
+    height:100%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-direction:column;
+    gap:20px;
+    position:relative;
+  }
+
+  .heart-wrap{
+    width:min(60vmin,520px);
+    height:min(60vmin,520px);
+    display:grid;
+    place-items:center;
+    filter: drop-shadow(0 20px 40px rgba(0,0,0,0.6));
+    position:relative;
+  }
+
+  .glow {
+    position:absolute;
+    width:64%;
+    height:64%;
+    border-radius:50%;
+    background: radial-gradient(circle at 40% 30%, var(--glow), transparent 40%);
+    z-index:0;
+    pointer-events:none;
+    transform: translateY(10%);
+    animation: floaty 6s ease-in-out infinite;
+  }
+
+  @keyframes floaty {
+    0% { transform: translateY(8%) scale(1); opacity:0.95; }
+    50%{ transform: translateY(-4%) scale(1.02); opacity:1; }
+    100%{ transform: translateY(8%) scale(1); opacity:0.95; }
+  }
+
+  @keyframes heartbeat {
+    0%   { transform: scale(1) translateY(0); }
+    10%  { transform: scale(1.08) translateY(-3px); }
+    25%  { transform: scale(1.12) translateY(-6px); }
+    40%  { transform: scale(1.05) translateY(-3px); }
+    60%  { transform: scale(1.00) translateY(0); }
+    100% { transform: scale(1) translateY(0); }
+  }
+
+  .heart-svg{
+    width:100%;
+    height:100%;
+    z-index:2;
+    transform-origin:center center;
+    animation: heartbeat 1.2s cubic-bezier(.28,.84,.49,1.13) infinite;
+  }
+  
+  .heart-shape{
+    filter: drop-shadow(0 8px 24px rgba(255,45,85,0.18));
+  }
+
+  .heart-text{
+    position:absolute;
+    z-index:3;
+    text-align:center;
+    width:70%;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-48%);
+    pointer-events:none;
+    user-select:none;
+  }
+
+  .heart-text h1{
+    margin:0;
+    font-size: clamp(18px, 4.5vmin, 40px);
+    line-height:1;
+    letter-spacing:0.6px;
+    font-weight:700;
+    color:white;
+    text-shadow:
+      0 1px 0 rgba(0,0,0,0.35),
+      0 6px 18px rgba(198,24,59,0.18);
+    opacity:0;
+    transform: translateY(10px) scale(.98);
+    animation: textIn 0.9s cubic-bezier(.2,.9,.3,1) forwards 0.6s;
+  }
+
+  .heart-text p{
+    margin:6px 0 0 0;
+    font-size: clamp(12px, 2.3vmin, 18px);
+    opacity:0;
+    transform: translateY(8px);
+    animation: textIn 0.9s cubic-bezier(.2,.9,.3,1) forwards 0.9s;
+    color: rgba(255,255,255,0.9);
+    font-weight:600;
+  }
+
+  @keyframes textIn {
+    to { opacity:1; transform:none; }
+  }
+
+  .particle {
+    position:absolute;
+    width:18px;
+    height:18px;
+    opacity:0.9;
+    transform-origin:center center;
+    pointer-events:none;
+    will-change: transform, opacity;
+  }
+
+  .caption{
+    position:absolute;
+    bottom:24px;
+    left:50%;
+    transform:translateX(-50%);
+    opacity:0.7;
+    font-size:13px;
+    user-select:none;
+  }
+
+  /* ✅ Next button style */
+  .next-btn{
+    position:absolute;
+    bottom:70px;
+    padding:10px 20px;
+    background:#ff2d55;
+    color:white;
+    font-weight:bold;
+    border-radius:30px;
+    text-decoration:none;
+    box-shadow:0 4px 12px rgba(0,0,0,0.4);
+    transition:0.3s;
+  }
+  .next-btn:hover{
+    background:#ff466e;
+    transform:scale(1.05);
+  }
+</style>
+</head>
+<body>
+  <div class="stage">
+    <div class="heart-wrap" aria-hidden="false">
+      <div class="glow"></div>
+
+      <svg class="heart-svg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Beating heart">
+        <defs>
+          <linearGradient id="g1" x1="0" x2="1" y1="0" y2="1">
+            <stop offset="0%" stop-color="#ff5577"/>
+            <stop offset="55%" stop-color="#ff2d55"/>
+            <stop offset="100%" stop-color="#d61f4a"/>
+          </linearGradient>
+        </defs>
+        <g transform="translate(0,6) scale(1)">
+          <path class="heart-shape" d="M100 170
+            C70 150 22 112 22 70
+            C22 44 44 26 66 34
+            C82 40 92 56 100 74
+            C108 56 118 40 134 34
+            C156 26 178 44 178 70
+            C178 112 130 150 100 170 Z"
+            fill="url(#g1)" stroke="#c92b4b" stroke-width="1.6" />
+        </g>
+        <ellipse cx="72" cy="66" rx="18" ry="10" fill="rgba(255,255,255,0.08)" />
+      </svg>
+
+      <div class="heart-text" aria-hidden="false">
+        <h1>I love you Pujan</h1>
+        <p>forever &amp; always 💖</p>
+      </div>
+    </div>
+
+    <div class="caption">Made with ♥ — open in browser on desktop or mobile</div>
+
+    <!-- ✅ Next button -->
+    <a href="poem1.html" class="next-btn">Next ➝</a>
+  </div>
+
+<script>
+(function createParticles(){
+  const wrap = document.querySelector('.heart-wrap');
+  const colors = ['#ff6b88','#ff2d55','#ff8aa0','#ff466e'];
+  const max = 12;
+  function makeHeart() {
+    const el = document.createElement('div');
+    el.className = 'particle';
+    const startX = 40 + Math.random()*120;
+    const startY = 110 + Math.random()*40;
+    el.style.left = startX + 'px';
+    el.style.top  = startY + 'px';
+    el.style.width = (10 + Math.random()*18) + 'px';
+    el.style.height = el.style.width;
+    el.style.opacity = 0.9 - Math.random()*0.55;
+    el.style.background = colors[Math.floor(Math.random()*colors.length)];
+    el.style.borderRadius = '50% 50% 50% 50% / 60% 60% 40% 40%';
+    el.style.transform = `translate(-50%,-50%) rotate(${Math.random()*30-15}deg) scale(${0.8 + Math.random()*0.6})`;
+    el.style.zIndex = 1;
+    wrap.appendChild(el);
+    const rise = 80 + Math.random()*160;
+    const drift = (Math.random()*120 - 60);
+    const time = 3000 + Math.random()*2400;
+    el.animate([
+      { transform: el.style.transform + ' translateY(0px) translateX(0px)', opacity: el.style.opacity },
+      { transform: el.style.transform + ` translateY(-${rise}px) translateX(${drift}px)`, opacity: 0 }
+    ], {
+      duration: time,
+      easing: 'cubic-bezier(.2,.8,.3,1)',
+      iterations: 1,
+      fill: 'forwards'
+    });
+    setTimeout(()=> { el.remove(); }, time + 80);
+  }
+  setInterval(()=> {
+    const live = document.querySelectorAll('.particle').length;
+    if(live < max && Math.random() > 0.25) {
+      makeHeart();
+    }
+  }, 420);
+})();
+</script>
+</body>
+</html>

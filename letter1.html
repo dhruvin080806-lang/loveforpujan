@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Love Letter for Pujan</title>
+<style>
+  body{
+    margin:0;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    background:linear-gradient(135deg, #ff4e70, #ff99ac, #ffd1dc);
+    background-size:300% 300%;
+    font-family:"Segoe UI", Roboto, cursive;
+    color:white;
+    text-align:center;
+    padding:20px;
+    overflow:hidden;
+    animation:gradientShift 15s ease infinite;
+  }
+
+  /* Floating hearts background */
+  .hearts span {
+    position:absolute;
+    bottom:-50px;
+    font-size:2rem;
+    opacity:0.7;
+    animation:float 10s linear infinite;
+    color: #fff;
+  }
+  .hearts span:nth-child(1){ left:10%; animation-delay:0s; }
+  .hearts span:nth-child(2){ left:25%; animation-delay:3s; }
+  .hearts span:nth-child(3){ left:50%; animation-delay:6s; }
+  .hearts span:nth-child(4){ left:70%; animation-delay:1.5s; }
+  .hearts span:nth-child(5){ left:85%; animation-delay:4.5s; }
+
+  @keyframes float {
+    0% { transform: translateY(0) scale(0.6); opacity:0; }
+    30% { opacity:1; }
+    100% { transform: translateY(-110vh) scale(1.3); opacity:0; }
+  }
+
+  .letter{
+    max-width:700px;
+    font-size:1.2em;
+    line-height:1.8;
+    text-align:left;
+    background:rgba(255,255,255,0.15);
+    padding:30px;
+    border-radius:20px;
+    box-shadow:0 0 25px rgba(255,255,255,0.4),
+               0 0 50px rgba(255,77,120,0.5);
+    backdrop-filter: blur(10px);
+    white-space:pre-wrap;
+    overflow:hidden;
+    animation:fadeIn 2s ease forwards;
+    opacity:0;
+  }
+
+  button{
+    margin-top:30px;
+    padding:12px 28px;
+    background:white;
+    color:#ff2d55;
+    font-weight:bold;
+    border-radius:30px;
+    border:none;
+    cursor:pointer;
+    box-shadow:0 4px 12px rgba(0,0,0,0.4);
+    transition:0.3s;
+    display:none;
+  }
+  button:hover{
+    background:#ffeaf0;
+    transform:scale(1.08);
+  }
+
+  @keyframes fadeIn {
+    from {opacity:0; transform:scale(0.95);}
+    to {opacity:1; transform:scale(1);}
+  }
+
+  @keyframes gradientShift {
+    0% { background-position:0% 50%; }
+    50% { background-position:100% 50%; }
+    100% { background-position:0% 50%; }
+  }
+</style>
+</head>
+<body>
+
+  <!-- Floating hearts background -->
+  <div class="hearts">
+    <span>💖</span>
+    <span>💕</span>
+    <span>💞</span>
+    <span>💓</span>
+    <span>❤️</span>
+  </div>
+
+  <!-- Love Letter -->
+  <div id="letter-container" class="letter"></div>
+  <button id="next-btn" onclick="window.location.href='fireworks1.html'">✨ Next Surprise</button>
+
+<script>
+  // Typewriter Love Letter
+  const text = `My Dearest Pujan💖,
+
+From the moment you came into my life,
+everything became brighter, softer, and more beautiful.
+Your smile is my sunrise, your laugh is my favorite song,
+and your love is the greatest gift I could ever ask for.
+
+No words will ever be enough to capture how much you mean to me.
+But today, I just want you to know:
+I am yours—completely, endlessly, forever. 💖
+
+With all my love,
+[Vaidik]`;
+
+  let i = 0;
+  const speed = 45;
+  const letterBox = document.getElementById("letter-container");
+  const nextBtn = document.getElementById("next-btn");
+
+  function typeWriter() {
+    if (i < text.length) {
+      letterBox.innerHTML += text.charAt(i);
+      i++;
+      setTimeout(typeWriter, speed);
+    } else {
+      nextBtn.style.display = "inline-block";
+    }
+  }
+
+  // Start typewriter after fade-in
+  setTimeout(() => {
+    typeWriter();
+  }, 1000);
+</script>
+</body>
+</html>
